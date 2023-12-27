@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 
 const HomeSectionCarousel = ({data, sectionName}) => {
   const [activeIndex, setActiveIndex] = useState(0);

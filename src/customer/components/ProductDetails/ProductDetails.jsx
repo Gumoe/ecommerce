@@ -128,7 +128,7 @@ export default function ProductDetails() {
             </div>
           </div>
           {/* Product info */}
-          <div className="lg:col-span-1 maxt-auto max-w-2x1 px-4 pb-16 sm:px-6 lg:max-w-7x1 lg:px-8 lg:pb-24">
+          <div className="lg:col-span-1 maxt-auto max-w-2xl px-4 pb-16 sm:px-6 lg:max-w-7x1 lg:px-8 lg:pb-24">
             <div className="lg:col-span-2 ">
               <h1 className="text-lg lg:text-x1 font-semibold text-gray-900">
                 Lorem.

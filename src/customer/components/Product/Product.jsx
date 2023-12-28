@@ -47,9 +47,9 @@ export default function Product() {
 
       if (filterValue.length === 0) {
         searchParam.delete(sectionId);
-        console.log("delete")
+        console.log("delete");
       }
-      console.log("includes,",value,sectionId,filterValue)
+      console.log("includes,", value, sectionId, filterValue);
     } else {
       filterValue.push(value);
     }
@@ -61,12 +61,12 @@ export default function Product() {
     navigate({ search: `?${query}` });
   };
 
-  const handleRadioFilterChange=(e, sectionId)=>{
+  const handleRadioFilterChange = (e, sectionId) => {
     const searchParam = new URLSearchParams();
-    searchParam.set(sectionId, e.target.value)
+    searchParam.set(sectionId, e.target.value);
     const query = searchParam.toString();
     navigate({ search: `?${query}` });
-  }
+  };
   return (
     <div className="bg-white">
       <div>
@@ -359,7 +359,7 @@ export default function Product() {
                                   key={option.value}
                                   className="flex items-center"
                                 >
-                                  <input 
+                                  <input
                                     onChange={() =>
                                       handleFilter(option.value, section.id)
                                     }
@@ -428,7 +428,9 @@ export default function Product() {
                                   {section.options.map((option, optionIdx) => (
                                     <>
                                       <FormControlLabel
-                                        onChange={(e)=>handleRadioFilterChange(e, section.id)}
+                                        onChange={(e) =>
+                                          handleRadioFilterChange(e, section.id)
+                                        }
                                         value={option.value}
                                         control={<Radio />}
                                         label={option.label}

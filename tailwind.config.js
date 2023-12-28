@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'gumiepink': '#c154c1',
+        'gumiepink': '#ec407a',
+        'gumiedeeppastelpink': '#c154c1'
       },
     },
   },

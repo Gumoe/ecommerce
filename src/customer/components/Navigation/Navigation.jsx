@@ -1,4 +1,4 @@
-import { navigation } from "./navigationData"
+import { navigation } from "./navigationData";
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
@@ -9,21 +9,21 @@ import {
 } from "@heroicons/react/24/outline";
 
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
-import { deepPurple } from "@mui/material/colors"; 
+import { deepPurple } from "@mui/material/colors";
+import { useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Navigation() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const [openAuthModel, setOpenAuthModel] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
-
-
 
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -34,14 +34,14 @@ export default function Navigation() {
 
   const handleOpen = () => {
     setOpenAuthModel(true);
-  }
+  };
 
   const hanldeClose = () => {
     setOpenAuthModel(false);
   };
 
   const handleCategoryClick = (category, section, item, close) => {
-
+    navigate(`/${category.id}/${section.id}/$${item.id}`);
     close();
   };
 
@@ -223,10 +223,7 @@ export default function Navigation() {
       </Transition.Root>
 
       <header className="relative bg-white">
-        <nav
-          aria-label="Top"
-          className="mx-auto px-4 sm:px-6 lg:px-8"
-        >
+        <nav aria-label="Top" className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center">
               <button
@@ -256,7 +253,7 @@ export default function Navigation() {
                 <div className="flex h-full space-x-8">
                   {navigation.categories.map((category) => (
                     <Popover key={category.name} className="flex">
-                      {({ open }) => (
+                      {({ open, close }) => (
                         <>
                           <div className="relative flex">
                             <Popover.Button
@@ -341,12 +338,14 @@ export default function Navigation() {
                                                 key={item.name}
                                                 className="flex"
                                               >
-                                                <a
-                                                  href={item.href}
-                                                  className="hover:text-gray-800"
+                                                <p
+                                                  onClick={() =>
+                                                    handleCategoryClick(category,section,item,close)
+                                                  }
+                                                  className=" cursor-pointer hover:text-gray-800"
                                                 >
                                                   {item.name}
-                                                </a>
+                                                </p>
                                               </li>
                                             ))}
                                           </ul>
@@ -404,7 +403,7 @@ export default function Navigation() {
                           Profile
                         </MenuItem>
 
-                        <MenuItem>My Orders</MenuItem>
+                        <MenuItem onClick = {()=>navigate("/account/order")}>My Orders</MenuItem>
 
                         <MenuItem>Log Out</MenuItem>
                       </Menu>
@@ -431,18 +430,16 @@ export default function Navigation() {
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                    <Button
-                      className = "group-m-2 flex items-center p-2"
-                    >
-                      <ShoppingBagIcon
-                        className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                        aria-hidden = "true"
-                      />
-                      <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-500">
-                        2
-                      </span>
-                      <span className="sr-only">View Cart</span>
-                    </Button>
+                  <Button className="group-m-2 flex items-center p-2">
+                    <ShoppingBagIcon
+                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-500">
+                      2
+                    </span>
+                    <span className="sr-only">View Cart</span>
+                  </Button>
                 </div>
               </div>
             </div>

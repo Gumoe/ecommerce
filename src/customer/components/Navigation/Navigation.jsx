@@ -10,7 +10,10 @@ import {
 
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import AuthModal from "../../Auth/AuthModal";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, logout } from "../../../State/Auth/Action";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -24,11 +27,14 @@ export default function Navigation() {
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
+  const { auth } = useSelector(store => store);
+  const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleCloseUserNemu = (event) => {
+  const handleCloseUserMenu = (event) => {
     setAnchorEl(null);
   };
 
@@ -38,6 +44,7 @@ export default function Navigation() {
 
   const hanldeClose = () => {
     setOpenAuthModel(false);
+
   };
 
   const handleCategoryClick = (category, section, item, close) => {
@@ -45,6 +52,28 @@ export default function Navigation() {
     close();
   };
 
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getUser(jwt))
+    }
+
+  }, [jwt, auth.jwt])
+
+  useEffect(() => {
+
+    if(auth.user){
+      hanldeClose()
+    }
+    if(location.pathname==="/login" || location.pathname==="/register"){
+      navigate(-1)
+    }
+
+  }, [auth.user])
+
+  const handleLogout=()=>{
+    dispatch(logout())
+    handleCloseUserMenu()
+  }
   return (
     <div className="bg-white z-50 pb-5">
       {/* Mobile menu */}
@@ -340,7 +369,7 @@ export default function Navigation() {
                                               >
                                                 <p
                                                   onClick={() =>
-                                                    handleCategoryClick(category,section,item,close)
+                                                    handleCategoryClick(category, section, item, close)
                                                   }
                                                   className=" cursor-pointer hover:text-gray-800"
                                                 >
@@ -376,7 +405,7 @@ export default function Navigation() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  {true ? (
+                  {auth.user?.firstName ? (
                     <div>
                       <Avatar
                         className="text-white"
@@ -389,23 +418,25 @@ export default function Navigation() {
                           color: "white",
                           cursor: "pointer",
                         }}
-                      ></Avatar>
+                      >
+                        {auth.user?.firstName[0].toUpperCase()}
+                      </Avatar>
                       <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}
                         open={openUserMenu}
-                        onClose={handleCloseUserNemu}
+                        onClose={handleCloseUserMenu}
                         MenuListProps={{
                           "aria-labelbody": "basic-button",
                         }}
                       >
-                        <MenuItem onClick={handleCloseUserNemu}>
+                        <MenuItem onClick={handleCloseUserMenu}>
                           Profile
                         </MenuItem>
 
-                        <MenuItem onClick = {()=>navigate("/account/order")}>My Orders</MenuItem>
+                        <MenuItem onClick={() => navigate("/account/order")}>My Orders</MenuItem>
 
-                        <MenuItem>Log Out</MenuItem>
+                        <MenuItem onClick={handleLogout}>Log Out</MenuItem>
                       </Menu>
                     </div>
                   ) : (
@@ -446,6 +477,7 @@ export default function Navigation() {
           </div>
         </nav>
       </header>
+      <AuthModal handleClose={hanldeClose} open={openAuthModel} />
     </div>
   );
 }

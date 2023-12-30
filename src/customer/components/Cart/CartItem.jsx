@@ -2,43 +2,53 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { Button, IconButton } from "@mui/material";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { removeCartItem, updateCartItem } from "../../../State/Cart/Action";
 
-const CartItem = () => {
+const CartItem = ({item}) => {
+  const dispatch=useDispatch();
+    const handUpdateCartItem=(num)=>{
+      const data={data:{quantity:item.quantity+num},cartItemId:item?.id}
+      dispatch(updateCartItem(data))
+    }
+    const handRemoveCartItem=()=>{
+      dispatch(removeCartItem(item.id))
+    }
   return (
     <div className="p-5 shadow-lg border rounded-md">
       <div className="flex items-center">
         <div className="w-[5rem] h-[5rem] lg:w-[9rem] lg:h-[9rem]">
           <img
             className="w-full h-full object object-cover object-top"
-            src="https://cdn.vox-cdn.com/thumbor/fOVL5lEL5E7mwBygcfiBqG8BSBw=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/25125289/vlcsnap_2023_12_01_10h37m31s394.jpg"
+            src={item.product.imageUrl}
             alt=""
           />
         </div>
         <div className="ml-5 space-y-1">
           <p className="font-semibold">
-            Lorem ipsum, dolor sit amet consectetur adipisicing.
+            {item.product.title}
           </p>
-          <p className="opacity-70">Size: L, White</p>
-          <p className="opacity-70 mt-2">Nguoi ban: Gumie</p>
+          <p className="opacity-70">Size: {item.product.size}, White</p>
+          <p className="opacity-70 mt-2">Nguoi ban:{item.product.band}</p>
           <div className="flex space-x-5 items-center text-gray-900 pt-6">
-            <p className="font-font-semibold">499</p>
-            <p className="opacity-50 line-through">320</p>
-            <p className="text-green-600 font-semibold">20% Off</p>
+            <p className="font-font-semibold">{item.price}</p>
+            <p className="opacity-50 line-through">{item.discountPrice}</p>
+            <p className="text-green-600 font-semibold">{item.discountPersent}% Off</p>
           </div>
         </div>
       </div>
       <div className="lg:flex items-center lg:space-x-10 pt-4">
         <div className="flex items-center space-x-2">
-          <IconButton>
+          <IconButton onClick={()=>handUpdateCartItem(-1)} disabled={item.quantity <= 1}>
             <RemoveCircleOutlineIcon />
           </IconButton>
-          <span className="py-1 px-7 border rounded-sm">3</span>
-          <IconButton sx={{ color: "#c154c1" }}>
+          <span className="py-1 px-7 border rounded-sm">{item.quantity}</span>
+          <IconButton onClick={()=>handUpdateCartItem(1)} sx={{ color: "#c154c1" }}>
             <AddCircleOutlineIcon />
           </IconButton>
         </div>
         <div>
-          <Button sx={{ color: "#c154c1" }}>Remove</Button>
+          <Button onClick={handRemoveCartItem} sx={{ color: "#c154c1" }}>Remove</Button>
         </div>
       </div>
     </div>

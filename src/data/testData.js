@@ -22,9 +22,9 @@ export const testData = [
             }
         ],
         "quantity": "30",
-        "topLevelCategory": "men",
+        "topLevelCategory": "women",
         "secondLevelCategory": "Clothing",
-        "thirdLevelCategory": "tshirt",
+        "thirdLevelCategory": "top",
         "description": "null",
     },
     {

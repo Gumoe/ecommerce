@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { Box, Button, Grid, LinearProgress, Rating } from "@mui/material";
 import ProductReviewsCard from "./ProductReviewCard";
@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Product from "../Product/Product";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../../../State/Cart/Action";
+import { findProductsByID } from "../../../State/Product/Action";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -65,21 +66,26 @@ function classNames(...classes) {
 }
 
 export default function ProductDetails() {
-  
+
   const [selectedSize, setSelectedSize] = useState("");
   const navigate = useNavigate();
-  const params=useParams()
-  const dispatch=useDispatch()
-  const {product}=useSelector(store=>store);
+  const params = useParams()
+  const dispatch = useDispatch()
+  const { products } = useSelector(store => store);
 
-  console.log("----- ",params.productId)
+  console.log("----- ", params.productId)
 
-  const handleAddToCart = ()=>{
-    const data={productId:params.productId,size:selectedSize.name}
-    console.log("data _",data)
+  const handleAddToCart = () => {
+    const data = { productId: params.productId, size: selectedSize.name }
+    console.log("data _", data)
     dispatch(addItemToCart(data))
-    navigate("/cart");
+    navigate("/cart")
   }
+
+  useEffect(() => {
+    const data = { productId: params.productId }
+    dispatch(findProductsByID(data))
+  }, [params.productId])
 
   return (
     <div className="bg-white lg:px-20">
@@ -127,7 +133,7 @@ export default function ProductDetails() {
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
               <img
-                src={product.product?.imageUrl}
+                src={products?.product?.imageUrl}
                 alt=""
                 className="h-full w-full object-cover object-center"
               />
@@ -149,10 +155,10 @@ export default function ProductDetails() {
             <div className="lg:col-span-2 ">
               <h1 className="text-lg lg:text-x1 font-semibold text-gray-900">
                 {" "}
-                {product.product?.band}
+                {products.product?.brand}
               </h1>
               <h1 className="text-lg lg:text-x1 text-gray-900 opacity-60 pt-1">
-                {product.product?.title}
+                {products.product?.title}
               </h1>
             </div>
 
@@ -160,12 +166,12 @@ export default function ProductDetails() {
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Product information</h2>
               <div className="flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-6">
-                <p className="font-font-semibold">{product.product?.discountPrice}</p>
-                <p className="opacity-50 line-through">{product.product?.price}</p>
-                <p className="text-green-600 font-semibold">{product.product?.discountPersent}% Off</p>
+                <p className="font-font-semibold">{products.product?.discountedPrice} VND</p>
+                <p className="opacity-50 line-through">{products.product?.price} VND</p>
+                <p className="text-green-600 font-semibold">{products.product?.discountPersent}% Off</p>
               </div>
               <p className="text-3xl tracking-tight text-gray-900">
-                {product.price}
+                {products.price}
               </p>
 
               {/* Reviews */}
@@ -179,7 +185,7 @@ export default function ProductDetails() {
                 </div>
               </div>
 
-              <form  className="mt-10">
+              <form className="mt-10">
                 {/* Sizes */}
                 <div className="mt-10">
                   <div className="flex items-center justify-between">
@@ -255,11 +261,7 @@ export default function ProductDetails() {
                   </RadioGroup>
                 </div>
 
-                <Button
-                onClick={handleAddToCart}
-                  variant="contained"
-                  sx={{ p: "2rem", py: "1rem", bgcolor: "#c154c1" }}
-                >
+                <Button onClick={handleAddToCart} variant="contained" sx={{ p: "2rem", py: "1rem", bgcolor: "#c154c1" }}>
                   Add to Cart
                 </Button>
               </form>
@@ -312,59 +314,59 @@ export default function ProductDetails() {
             <Grid container spacing={7}>
               <Grid item xs={7}>
                 <div className="space-y-5">
-                    {[1,1,1].map((item)=><ProductReviewCard/>)}
-                    
+                  {[1, 1, 1].map((item) => <ProductReviewCard />)}
+
                 </div>
               </Grid>
               <Grid item xs={5}>
                 <h1 className="text-xl font-semibold pb-1">Product Rating</h1>
                 <div className="flex items-center space-x-3">
-                    <Rating value={4.} precision={.5} readOnly/>
-                    <p className="opacity-60">6 Ratings</p>
+                  <Rating value={4.} precision={.5} readOnly />
+                  <p className="opacity-60">6 Ratings</p>
                 </div>
 
                 <Box className="mt-5 space-y-3">
-                    <Grid container justifyContent={"center"} alignItems={"center"} gap={2}>
-                        <Grid item xs={2}>
-                            <p>Excellent</p>
-                        </Grid>
-                        <Grid item xs={7}>
-                            <LinearProgress sx ={{bgcolor:"#848884", borderRadius:4,height:7}} variant="determinate" value={40} color="success"/>
-                        </Grid>
+                  <Grid container justifyContent={"center"} alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Excellent</p>
                     </Grid>
-                    
-                    <Grid container justifyContent={"center"} alignItems={"center"} gap={2}>
-                        <Grid item xs={2}>
-                            <p>Very Good</p>
-                        </Grid>
-                        <Grid item xs={7}>
-                            <LinearProgress sx ={{bgcolor:"#848884", borderRadius:4,height:7}} variant="determinate" value={32} color="success"/>
-                        </Grid>
+                    <Grid item xs={7}>
+                      <LinearProgress sx={{ bgcolor: "#848884", borderRadius: 4, height: 7 }} variant="determinate" value={40} color="success" />
                     </Grid>
-                    <Grid container justifyContent={"center"} alignItems={"center"} gap={2}>
-                        <Grid item xs={2}>
-                            <p>Good</p>
-                        </Grid>
-                        <Grid item xs={7}>
-                            <LinearProgress sx ={{bgcolor:"#848884", borderRadius:4,height:7,color:"yellow"}} variant="determinate" value={30}/>
-                        </Grid>
+                  </Grid>
+
+                  <Grid container justifyContent={"center"} alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Very Good</p>
                     </Grid>
-                    <Grid container justifyContent={"center"} alignItems={"center"} gap={2}>
-                        <Grid item xs={2}>
-                            <p>Average</p>
-                        </Grid>
-                        <Grid item xs={7}>
-                            <LinearProgress sx ={{bgcolor:"#848884", borderRadius:4,height:7}} variant="determinate" value={20} color="warning"/>
-                        </Grid>
+                    <Grid item xs={7}>
+                      <LinearProgress sx={{ bgcolor: "#848884", borderRadius: 4, height: 7 }} variant="determinate" value={32} color="success" />
                     </Grid>
-                    <Grid container justifyContent={"center"} alignItems={"center"} gap={2}>
-                        <Grid item xs={2}>
-                            <p>Poor</p>
-                        </Grid>
-                        <Grid item xs={7}>
-                            <LinearProgress sx ={{bgcolor:"#848884", borderRadius:4,height:7}} variant="determinate" value={5} color="error"/>
-                        </Grid>
+                  </Grid>
+                  <Grid container justifyContent={"center"} alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Good</p>
                     </Grid>
+                    <Grid item xs={7}>
+                      <LinearProgress sx={{ bgcolor: "#848884", borderRadius: 4, height: 7, color: "yellow" }} variant="determinate" value={30} />
+                    </Grid>
+                  </Grid>
+                  <Grid container justifyContent={"center"} alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Average</p>
+                    </Grid>
+                    <Grid item xs={7}>
+                      <LinearProgress sx={{ bgcolor: "#848884", borderRadius: 4, height: 7 }} variant="determinate" value={20} color="warning" />
+                    </Grid>
+                  </Grid>
+                  <Grid container justifyContent={"center"} alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Poor</p>
+                    </Grid>
+                    <Grid item xs={7}>
+                      <LinearProgress sx={{ bgcolor: "#848884", borderRadius: 4, height: 7 }} variant="determinate" value={5} color="error" />
+                    </Grid>
+                  </Grid>
 
                 </Box>
               </Grid>
@@ -373,10 +375,10 @@ export default function ProductDetails() {
         </section>
         {/* các sản phẩm tương tự */}
         <section className="pt-10">
-            <h1 className="py-5 text-xl font-bold">Sản phẩm tương tự</h1>
-            <div className="flex flex-wrap space-y-5 justify-center">
-                {testData.map((item)=><HomeSectionCard product = {item}/>)}
-            </div>
+          <h1 className="py-5 text-xl font-bold">Sản phẩm tương tự</h1>
+          <div className="flex flex-wrap space-y-5 justify-center">
+            {testData.map((item) => <HomeSectionCard product={item} />)}
+          </div>
         </section>
       </div>
     </div>

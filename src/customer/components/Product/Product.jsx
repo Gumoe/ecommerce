@@ -35,14 +35,13 @@ function classNames(...classes) {
 
 export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-
   const location = useLocation();
-
   const navigate = useNavigate();
   const param = useParams();
   const dispatch= useDispatch();
-  const {product}=useSelector(store=>store)
+  const {products}=useSelector(store=>store)
 
+  console.log("pages : ", products.products)
 
   const decodedQueryString=decodeURIComponent(location.search);
   const searchParamms= new URLSearchParams(decodedQueryString);
@@ -54,24 +53,25 @@ export default function Product() {
   const pageNumber = searchParamms.get("page")||1;
   const stock=searchParamms.get("stock");
 
-  const handlePaginationChange=(value)=>{
+  const handlePaginationChange=(event, value)=>{
     const searchParamms = new URLSearchParams(location.search)
     searchParamms.set("page",value);
     const query=searchParamms.toString();
-    navigate({search:`${query}`})
+    console.log(searchParamms, value);
+    navigate({search:`?${query}`})
   }
 
   const handleFilter = (value, sectionId) => {
-    const searchParam = new URLSearchParams(location.search);
+    const searchParamms = new URLSearchParams(location.search);
 
-    let filterValue = searchParam.getAll(sectionId);
+    let filterValue = searchParamms.getAll(sectionId);
 
     if (filterValue.length > 0 && filterValue[0].split(",").includes(value)) {
       filterValue = filterValue[0].split(",").filter((item) => item !== value);
 
       if (filterValue.length === 0) {
-        searchParam.delete(sectionId);
-        console.log("delete");
+        searchParamms.delete(sectionId);
+        console.log("Đồng ý xóa");
       }
       console.log("includes,", value, sectionId, filterValue);
     } else {
@@ -79,22 +79,23 @@ export default function Product() {
     }
 
     if (filterValue.length > 0) {
-      searchParam.set(sectionId, filterValue.join(","));
+      searchParamms.set(sectionId, filterValue.join(","));
     }
-    const query = searchParam.toString();
+    const query = searchParamms.toString();
     navigate({ search: `?${query}` });
   };
 
   const handleRadioFilterChange = (e, sectionId) => {
-    const searchParam = new URLSearchParams();
-    searchParam.set(sectionId, e.target.value);
-    const query = searchParam.toString();
+    const searchParamms = new URLSearchParams(location.search);
+    
+    searchParamms.set(sectionId, e.target.value);
+    const query = searchParamms.toString();
     navigate({ search: `?${query}` });
   };
 
 
   useEffect(()=>{
-    const [minPrice, maxPrice]= priceValue===null?[0,99999]:priceValue.split("-").map(Number)
+    const [minPrice, maxPrice]= priceValue===null?[0,100000]:priceValue.split("-").map(Number); 
 
     const data={
       category:param.levelThree,
@@ -506,7 +507,7 @@ export default function Product() {
               {/* Product grid */}
               <div className="lg:col-span-4 w-full">
                 <div className="flex flex-wrap justify-center bg-white py-5">
-                  {product.products && product.products?.content?.map((item) => (
+                  {products.products && products.products?.content?.map((item) => (
                     <ProductCard product={item} />
                   ))}
                 </div>
@@ -516,7 +517,7 @@ export default function Product() {
 
           <section className="w-full px=[3.6rem]">
             <div className="px-4 py-5 flex justify-center">
-            <Pagination count={product.products?.totalPages} color="secondary" 
+            <Pagination count={products.products?.totalpages}
             onChange={handlePaginationChange}/>
             </div>
           </section>

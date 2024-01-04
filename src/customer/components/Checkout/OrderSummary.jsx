@@ -34,20 +34,20 @@ const OrderSummary = () => {
               <hr />
               <div className="space-y-3 font-font-semibold mb-10">
                 <div className="flex justify-between pt-3 text-black">
-                  <span>Price</span>
+                  <span>Tổng giá trị</span>
                   <span>{order.order?.totalPrice}</span>
                 </div>
                 <div className="flex justify-between pt-3">
-                  <span>Discount</span>
-                  <span className="text-green-600 ">{order.order?.discount}</span>
+                  <span>Giảm giá</span>
+                  <span className="text-green-600 ">{order.order?.discounted}</span>
                 </div>
                 <div className="flex justify-between pt-3 ">
-                  <span>Delivery Charges</span>
-                  <span className="text-green-600 ">Free</span>
+                  <span>Phí vận chuyển</span>
+                  <span className="text-green-600 ">Miễn phí</span>
                 </div>
                 <div className="flex justify-between pt-3 font-bold">
-                  <span>Total Amount</span>
-                  <span className="text-green-600 ">{order.order?.totalDiscountPrice}</span>
+                  <span>Tổng tiền</span>
+                  <span className="text-green-600 ">{order.order?.totalDiscountedPrice}</span>
                 </div>
               </div>
               <Button

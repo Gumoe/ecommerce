@@ -3,7 +3,6 @@ import React from "react";
 import AddressCard from "../AddressCard/AddressCard";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { create } from "@mui/material/styles/createTransitions";
 import { createOrder } from "../../../State/Order/Action";
 
 const DeliveryAddressForm = () => {
@@ -21,7 +20,7 @@ const DeliveryAddressForm = () => {
             zip:data.get('zip'),
             mobile:data.get('phoneNumber'),
         }
-        const orderData={address,navigate}
+        const orderData={address, navigate}
         dispatch(createOrder(orderData))
         console.log("address", orderData);
     }

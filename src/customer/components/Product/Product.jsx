@@ -517,7 +517,7 @@ export default function Product() {
 
           <section className="w-full px=[3.6rem]">
             <div className="px-4 py-5 flex justify-center">
-            <Pagination count={products.products?.totalpages}
+            <Pagination count={products.products?.totalPages}
             onChange={handlePaginationChange}/>
             </div>
           </section>

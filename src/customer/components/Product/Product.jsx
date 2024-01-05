@@ -94,7 +94,7 @@ export default function Product() {
 
 
   useEffect(()=>{
-    const [minPrice, maxPrice]= priceValue===null?[0,99999]:priceValue.split("-").map(Number)
+    const [minPrice, maxPrice]= priceValue===null?[0,100000000]:priceValue.split("-").map(Number)
 
     const data={
       category:param.levelThree,
@@ -506,7 +506,7 @@ export default function Product() {
               {/* Product grid */}
               <div className="lg:col-span-4 w-full">
                 <div className="flex flex-wrap justify-center bg-white py-5">
-                  {product.products && product.products?.content?.map((item) => (
+                  {products.products && products.products?.content?.map((item) => (
                     <ProductCard product={item} />
                   ))}
                 </div>

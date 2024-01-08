@@ -1,9 +1,9 @@
 import { Avatar, Button, Card, CardHeader, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import React, { useEffect } from 'react'
 import { findProducts } from '../../State/Product/Action'
-import { useDispach,useSelector} from 'react-redux'
+import { useDispach,useDispatch,useSelector} from 'react-redux'
 const ProductsTable = () => {
-  const dispatch=useDispach();
+  const dispatch=useDispatch();
   const {products}=useSelector(store=>store);
   console.log("products ---- ",products)
   useEffect(()=>{
@@ -19,8 +19,7 @@ const ProductsTable = () => {
       pageSize:5,
       stock:""
 
-    }dispatch(findProducts(data))
-
+    };dispatch(findProducts(data));
   },[])
 
   return (

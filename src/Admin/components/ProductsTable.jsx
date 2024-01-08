@@ -1,9 +1,9 @@
 import { Avatar, Button, Card, CardHeader, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import React, { useEffect } from 'react'
 import { findProducts } from '../../State/Product/Action'
-import { useDispach,useSelector} from 'react-redux'
+import { useDispach,useDispatch,useSelector} from 'react-redux'
 const ProductsTable = () => {
-  const dispatch=useDispach();
+  const dispatch=useDispatch();
   const {products}=useSelector(store=>store);
   console.log("products ---- ",products)
   const handleProductDelete=(productId)=>{
@@ -22,8 +22,12 @@ const ProductsTable = () => {
       pageSize:5,
       stock:""
 
+<<<<<<< HEAD
     }dispatch findProducts(data))
 
+=======
+    };dispatch(findProducts(data));
+>>>>>>> c9ed6add256ba1c0e4cce411b4bb3faaac555931
   },[])
 
   return (

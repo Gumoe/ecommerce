@@ -1,18 +1,19 @@
+<<<<<<< HEAD
 
+=======
+import { Box, CssBaseline, Drawer, List, ListItem, ListItemButton, ListItemIcon, Toolbar, useMediaQuery, useTheme,Typography } from '@mui/material';
+>>>>>>> e691d6d462a9ccd7b2a6cbbc0ad00075f48b2d68
 import React, { useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import {
-  Box,
-  CssBaseline,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
   ListItemText,
+<<<<<<< HEAD
   Toolbar,
   useMediaQuery,
   useTheme,
   Typography,
+=======
+>>>>>>> e691d6d462a9ccd7b2a6cbbc0ad00075f48b2d68
 } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import InboxIcon from '@mui/icons-material/Inbox';
@@ -37,7 +38,6 @@ const Admin = () => {
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
   const [sideBarVisible, setSideBarVisible] = useState(false);
   const navigate = useNavigate();
-
   const drawer = (
     <Box
       sx={{
@@ -76,6 +76,30 @@ const Admin = () => {
     </Box>
   );
 
+<<<<<<< HEAD
+    return (
+        
+            <div className='relative flex h[100vh] '>
+                <CssBaseline />
+
+                <div className='w-[15%] border border-r-gray-300 h-full fixed top-0 '>
+                    {drawer}
+                </div>
+
+                <div className='w-[85%] h-full ml-[15%]'>
+                    <Routes>
+                        <Route path='/' element={<AdminDashBoard />} />
+                        <Route path='/product/create' element={<CreateProductForm />} />
+                        <Route path='/products' element={<ProductsTable />} />
+                        <Route path='/orders' element={<OrderTable />} />
+                        <Route path='/customers' element={<CustomersTable />} />
+                    </Routes>
+                </div>
+            </div>
+       
+    );
+};
+=======
   return (
     <div>
       <div className='flex h-[100vh] border border-black'>
@@ -84,6 +108,7 @@ const Admin = () => {
         <div className='w-[15%] border border-r-gray-300 h-full'>
           {drawer}
         </div>
+>>>>>>> c9ed6add256ba1c0e4cce411b4bb3faaac555931
 
         <div className='w-[85%]'>
           <Routes>
@@ -98,5 +123,9 @@ const Admin = () => {
     </div>
   );
 };
+<<<<<<< HEAD
 
 export default Admin;
+=======
+export default Admin;
+>>>>>>> e691d6d462a9ccd7b2a6cbbc0ad00075f48b2d68

@@ -4,7 +4,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsCellIcon from '@mui/icons-material/SettingsCell';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Avatar, Box, CardContent, CardHeader, Grid, IconButton, Typography } from '@mui/material';
+import {Card, Avatar, Box, CardContent, CardHeader, Grid, IconButton, Typography } from '@mui/material';
 
 const salesData =[
     {
@@ -62,7 +62,7 @@ const renderStats=()=>{
 
 const MonthlyOverview = () => {
   return (
-    <Card sx={{bgcolor:"#242B2E",color:"white"}}>
+    <Card sx={{}}>
       <CardHeader title="Monthly Overview"
       action={
         <IconButton size='small'>

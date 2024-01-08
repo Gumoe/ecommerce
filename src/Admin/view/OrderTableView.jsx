@@ -3,7 +3,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-const OrderTable = () => {
+const OrderTableView = () => {
   const [anchorEl, setAnchorEl] = React.useState([]);
   const open = Boolean(anchorEl);
 
@@ -52,7 +52,7 @@ const handleDeletedOrder = (orderId) > {
 return (
   <div className='p-10'>
     <Card className='mt-2 bg-[#1b1b1b]'>
-      <CardHeader title="All Products" />
+      <CardHeader title="Recent Orders" />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -62,8 +62,7 @@ return (
               <TableCell align="left">Id</TableCell>
               <TableCell align="left">Price</TableCell>
               <TableCell align="left">Status</TableCell>
-              <TableCell align="left">Update</TableCell>
-              <TableCell align="left">Delete</TableCell>
+
             </TableRow>
           </TableHead>
           <TableBody>
@@ -92,41 +91,8 @@ return (
                       item.orderStats === "PLACED" ? "bg-[#02B290]" :
                         item.orderStats === "PENDING" ? "bg-[gray]" :
                           "bg-[#025720]"}`}>{item.orderStatus}</span></TableCell>
-                <TableCell align="left">
-                  <Button
-                    id="basic-button"
-                   
-                    aria-haspopup="true"
-                
-                    onClick={(event)=>handleClick(event,index)}
-                    aria-controls={`basic-menu-${item.id}`}
-                    aria-expanded={Boolean(anchorEl[index])}
 
-                  >
-                    Status
-                  </Button>
-                  <Menu
-                    id={`basic-menu-${item.id}`}
-                    anchorEl={anchorEl[index]}
-                    open={Boolean(anchorEl[index])}
-                    onClose={()=> handleClose(index)}
-                    MenuListProps={{
-                      'aria-labelledby': 'basic-button',
-                    }}
-                  >
-                    <MenuItem onClick={() => handleConfirmedOrder(item.id)}>Confirmed Order</MenuItem>
-                    <MenuItem onClick={() => handleShipedOrder(item.id)}>Shipped Order</MenuItem>
-                    <MenuItem onClick={() => handleDeliveredOrder(item.id)}>Delivered Order</MenuItem>
-                  </Menu>
-                </TableCell>
-                <TableCell align="left">
-                  <Button onClic={() => handleDeleteOrder(item.id)} 
-                  variant="outlined"
-                   
-                >
-                  Delete
-                  </Button>
-                </TableCell>
+                
               </TableRow>
             ))}
           </TableBody>
@@ -137,4 +103,4 @@ return (
 )
 }
 
-export default OrderTable
+export default OrderTableView

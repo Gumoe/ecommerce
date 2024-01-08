@@ -1,4 +1,4 @@
-import { FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import React, { Fragment, useState } from 'react'
 import { useDispatch } from 'react-redux';
 
@@ -51,7 +51,7 @@ const CreateProductForm = () => {
     };
 
   return (
-    <Fragment>
+    <div className=" p-10">
       <Typography
       variant='h3'
       sx={{ textAlign: "center"}}
@@ -61,7 +61,7 @@ const CreateProductForm = () => {
       </Typography>
       <form
         onSubmit={handleSubmit}
-        className="createProductContainer min-h-screen"
+        className="createProductContainer min-h-screen p-10"
         >
           <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -206,6 +206,7 @@ const CreateProductForm = () => {
       <MenuItem value="t-shirts">T-Shirts</MenuItem>
       <MenuItem value="saree">Saree</MenuItem>
       <MenuItem value="lengha_choli">Lengha Choli</MenuItem>
+      <MenuItem value="mens_kurta">Mens Kurta</MenuItem>
 
     </Select>
   </FormControl>
@@ -221,18 +222,52 @@ const CreateProductForm = () => {
  rows={3}
  value={productData.description}
  onChange={handleChange}
- 
  />
+</Grid>
+{productData.size.map((size, index)=> (
+  <Grid container item spacing ={3}>
+  <Grid item xs={12} sm={6}>
+  <TextField
+  label="Size Name"
+  name="name"
+  value={size.name}
+  onChange={(event)=> handleSizeChange(event, index)}
+  required
+  fullWidth
+  />
+  </Grid>
+  <Grid item xs={12} sm={6}>
+  <TextField
+  label="Quantity"
+  name="size_quantity"
+  type="number"
+  onChange={(event)=> handleSizeChange(event, index)}
+  required
+  fullWidth
+  />
+  </Grid> </Grid>
+))}
+<Grid item xs={12}>
+  <Button
+  variant="contained"
+  sx={{ p:1.8}}
+  className="py-20"
+  size="large"
+  type="submit"
+  >
+    Add New Product
+
+  </Button>
 </Grid>
 
 
           </Grid>
         </form>
-    </Fragment>
+    </div>
     <div>
 
     </div>
-  )
-}
+  );
+};
 
 export default CreateProductForm

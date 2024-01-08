@@ -18,7 +18,7 @@ const CartItem = ({ item }) => {
     <div className="p-5 shadow-lg border rounded-md">
       <div className="flex items-center">
         <div className="w-[5rem] h-[5rem] lg:w-[9rem] lg:h-[9rem]">
-          <img className="w-full h-full object object-cover object-top" src={item.product.imageUrl}
+          <img className="w-full h-full object object-cover object-top" src={`/images/product/${item.product.imageUrl}`}
             alt=""
           />
         </div>

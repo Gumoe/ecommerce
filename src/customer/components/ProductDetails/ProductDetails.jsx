@@ -133,7 +133,7 @@ export default function ProductDetails() {
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
               <img
-                src={products?.product?.imageUrl}
+                src={`/images/product/${products?.product?.imageUrl}`}
                 alt=""
                 className="h-full w-full object-cover object-center"
               />

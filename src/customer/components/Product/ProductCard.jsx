@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
   return (
-    <div onClick={()=>navigate(`/product/${product.id}`)} className="productCard w-[15rem] m-3 transition-all cursor-pointer">
-      <div className=" img h-[20rem]">
+    <div onClick={() => navigate(`/product/${product.id}`)} className="productCard w-[15rem] m-3 transition-all cursor-pointer">
+      <div className="img h-[20rem]">
         <img
           className="h-full w-full object-cover object-left-top"
-          src={product.imageUrl}
+          src={`/images/product/${product.imageUrl}`}
           alt=""
         />
       </div>

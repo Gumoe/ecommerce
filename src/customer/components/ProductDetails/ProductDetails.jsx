@@ -262,7 +262,7 @@ export default function ProductDetails() {
                 </div>
 
                 <Button onClick={handleAddToCart} variant="contained" sx={{ p: "2rem", py: "1rem", bgcolor: "#c154c1" }}>
-                  Add to Cart
+                  Thêm vào giỏ hàng
                 </Button>
               </form>
             </div>
@@ -274,7 +274,7 @@ export default function ProductDetails() {
 
                 <div className="space-y-6">
                   <p className="text-base text-gray-900">
-                    {product.description}
+                    {products.product?.description}
                   </p>
                 </div>
               </div>
@@ -299,7 +299,7 @@ export default function ProductDetails() {
                 <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
                 <div className="mt-4 space-y-6">
-                  <p className="text-sm text-gray-600">{product.details}</p>
+                  <p className="text-sm text-gray-600">{products.product?.titledetails}</p>
                 </div>
               </div>
             </div>
@@ -377,9 +377,12 @@ export default function ProductDetails() {
         <section className="pt-10">
           <h1 className="py-5 text-xl font-bold">Sản phẩm tương tự</h1>
           <div className="flex flex-wrap space-y-5 justify-center">
-            {testData.map((item) => <HomeSectionCard product={item} />)}
+            {products.products && products.products?.content?.map((item) => (
+              <HomeSectionCard key={item.id} product={item} />
+            ))}
           </div>
         </section>
+
       </div>
     </div>
   );

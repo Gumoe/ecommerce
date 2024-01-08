@@ -26,23 +26,23 @@ const Cart = () => {
         </div>
         <div className="px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0">
           <div className="border">
-            <p className="uppercase font-bold opacity-60 pb-4">Price</p>
+            <p className="uppercase font-bold opacity-60 pb-4">Hóa đơn</p>
             <hr />
             <div className="space-y-3 font-font-semibold mb-10">
               <div className="flex justify-between pt-3 text-black">
-                <span>Price</span>
+                <span>Giá giỏ hàng</span>
                 <span>{cart.cart?.totalPrice} VND</span>
               </div>
               <div className="flex justify-between pt-3">
-                <span>Discount</span>
+                <span>Giảm giá</span>
                 <span className="text-green-600 ">{cart.cart?.discounted} VND</span>
               </div>
               <div className="flex justify-between pt-3 ">
-                <span>Delivery Charges</span>
-                <span className="text-green-600 ">Free</span>
+                <span>Phí vận chuyển</span>
+                <span className="text-green-600 ">Miễn phí</span>
               </div>
               <div className="flex justify-between pt-3 font-bold">
-                <span>Total Amount</span>
+                <span>Tổng hóa đơn</span>
                 <span className="text-green-600 ">{cart.cart?.totalDiscountedPrice} VND</span>
               </div>
             </div>

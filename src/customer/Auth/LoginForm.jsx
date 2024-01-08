@@ -8,12 +8,12 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    
+
     const handleSubmit = (event) => {
 
         event.preventDefault()
 
-        const data= new FormData(event.currentTarget);
+        const data = new FormData(event.currentTarget);
 
         const userData = {
             firstName: data.get("firstName"),
@@ -30,7 +30,7 @@ const LoginForm = () => {
         <div>
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
-                    
+
                     <Grid item xs={12}>
                         <TextField
                             required
@@ -49,6 +49,7 @@ const LoginForm = () => {
                             label="Password"
                             fullWidth
                             autoComplete='password'
+                            type='password'
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -59,7 +60,7 @@ const LoginForm = () => {
                             size='large'
                             sx={{ padding: ".8rem 0", bgcolor: "violet" }}
                         >
-                            Login
+                            Đăng nhập
                         </Button>
                     </Grid>
                 </Grid>
@@ -67,7 +68,7 @@ const LoginForm = () => {
             <div className='flex justify-center flex-col items-center'>
                 <div className='py-3 flex items-center'>
                     <p>Bạn không có tài khoản đăng nhập ?</p>
-                    <Button onClick={()=>navigate("/register")} className='ml-5 ' size='small'>Register</Button>
+                    <Button onClick={() => navigate("/register")} className='ml-5 ' size='small'>Register</Button>
                 </div>
             </div>
         </div>

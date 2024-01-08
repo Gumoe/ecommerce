@@ -4,7 +4,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsCellIcon from '@mui/icons-material/SettingsCell';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Avatar, Box, CardContent, CardHeader, Grid, IconButton, Typography } from '@mui/material';
+import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, Typography } from '@mui/material';
 
 const salesData =[
     {

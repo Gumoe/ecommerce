@@ -43,7 +43,7 @@ const RegisterForm = () => {
                             required
                             id='firstName'
                             name='firstName'
-                            label="First Name"
+                            label="Họ"
                             fullWidth
                             autoComplete='given-name'
                         />
@@ -53,7 +53,7 @@ const RegisterForm = () => {
                             required
                             id='lastName'
                             name='lastName'
-                            label="Last Name"
+                            label="Tên"
                             fullWidth
                             autoComplete='given-name'
                         />
@@ -73,9 +73,10 @@ const RegisterForm = () => {
                             required
                             id='password'
                             name='password'
-                            label="Password"
+                            label="Mật khẩu"
                             fullWidth
                             autoComplete='password'
+                            type='password'
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -86,7 +87,7 @@ const RegisterForm = () => {
                             size='large'
                             sx={{ padding: ".8rem 0", bgcolor: "violet" }}
                         >
-                            Register
+                            Đăng ký
                         </Button>
                     </Grid>
                 </Grid>

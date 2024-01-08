@@ -49,11 +49,8 @@ export const navigation = {
           id: 'brands',
           name: 'Brands',
           items: [
-            { name: 'Full Nelson', href: '#' },
-            { name: 'My Way', href: '#' },
-            { name: 'Re-Arranged', href: '#' },
-            { name: 'Counterfeit', href: '#' },
-            { name: 'Significant Other', href: '#' },
+            { name: 'BOO', href: '#' },
+            { name: 'ROUTINE', href: '#' },
           ],
         },
       ],

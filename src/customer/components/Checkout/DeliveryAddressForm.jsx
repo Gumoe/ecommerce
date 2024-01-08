@@ -6,24 +6,24 @@ import { useNavigate } from "react-router-dom";
 import { createOrder } from "../../../State/Order/Action";
 
 const DeliveryAddressForm = () => {
-  const dispatch=useDispatch();
-    const navigate= useNavigate()
-    const handleSubmit =(e)=>{
-        e.preventDefault();
-        const data = new FormData(e.currentTarget);
-        const address={
-            firstName:data.get('firstName'),
-            lastName:data.get('lastName'),
-            streetAddress:data.get('address'),
-            city:data.get('city'),
-            state:data.get('state'),
-            zip:data.get('zip'),
-            mobile:data.get('phoneNumber'),
-        }
-        const orderData={address, navigate}
-        dispatch(createOrder(orderData))
-        console.log("address", orderData);
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const address = {
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      streetAddress: data.get('address'),
+      city: data.get('city'),
+      state: data.get('state'),
+      zip: data.get('zip'),
+      mobile: data.get('phoneNumber'),
     }
+    const orderData = { address, navigate }
+    dispatch(createOrder(orderData))
+    console.log("address", orderData);
+  }
 
   return (
     <div>
@@ -54,7 +54,7 @@ const DeliveryAddressForm = () => {
                     required
                     id="firstName"
                     name="firstName"
-                    label="First Name"
+                    label="Họ"
                     fullWidth
                     autoComplete="given-name"
                   />
@@ -64,7 +64,7 @@ const DeliveryAddressForm = () => {
                     required
                     id="lastName"
                     name="lastName"
-                    label="Last Name"
+                    label="Tên"
                     fullWidth
                     autoComplete="given-name"
                   />
@@ -74,7 +74,7 @@ const DeliveryAddressForm = () => {
                     required
                     id="address"
                     name="address"
-                    label="Address"
+                    label="Địa chỉ"
                     fullWidth
                     autoComplete="given-name"
                     multiline
@@ -86,7 +86,7 @@ const DeliveryAddressForm = () => {
                     required
                     id="city"
                     name="city"
-                    label="City"
+                    label="Thành phố"
                     fullWidth
                     autoComplete="given-name"
                   />
@@ -96,7 +96,7 @@ const DeliveryAddressForm = () => {
                     required
                     id="state"
                     name="state"
-                    label="State/Province/Region"
+                    label="Tỉnh/Khu vực"
                     fullWidth
                     autoComplete="given-name"
                   />
@@ -116,19 +116,19 @@ const DeliveryAddressForm = () => {
                     required
                     id="phoneNumber"
                     name="phoneNumber"
-                    label="Phone Number"
+                    label="Số điện thoại"
                     fullWidth
                     autoComplete="given-name"
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <Button
-                    sx={{ py:1.5, mt: 2, bgcolor: "#c154c1" }}
+                    sx={{ py: 1.5, mt: 2, bgcolor: "#c154c1" }}
                     size="large"
                     variant="contained"
                     type="submit"
                   >
-                    Deliver here
+                    Giao hàng tại đây
                   </Button>
                 </Grid>
               </Grid>

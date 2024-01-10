@@ -30,11 +30,11 @@ const Cart = () => {
             <hr />
             <div className="space-y-3 font-font-semibold mb-10">
               <div className="flex justify-between pt-3 text-black">
-                <span>Giá giỏ hàng</span>
+                <span>Giá gốc</span>
                 <span>{cart.cart?.totalPrice} VND</span>
               </div>
               <div className="flex justify-between pt-3">
-                <span>Giảm giá</span>
+                <span>Giá khuyến mại</span>
                 <span className="text-green-600 ">{cart.cart?.discounted} VND</span>
               </div>
               <div className="flex justify-between pt-3 ">

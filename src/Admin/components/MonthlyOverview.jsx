@@ -7,12 +7,6 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, Typography } from '@mui/material';
 
-
-import {Card, Avatar, Box, CardContent, CardHeader, Grid, IconButton, Typography } from '@mui/material';
-
-import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, Typography } from '@mui/material';
-
-
 const salesData =[
     {
         stats:'245K',

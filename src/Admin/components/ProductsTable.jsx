@@ -8,7 +8,7 @@ const ProductsTable = () => {
   const {products}=useSelector(store=>store);
   console.log("products ---- ",products)
   const handleProductDelete=(productId)=>{
-    dispatch(deleteProduct(productId))
+    // dispatch(deleteProduct(productId))
   }
   useEffect(()=>{
     const data={

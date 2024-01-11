@@ -1,11 +1,17 @@
 
-import { Box, CssBaseline, Drawer, List, ListItem, ListItemButton, ListItemIcon, Toolbar, useMediaQuery, useTheme} from '@mui/material';
+import { Box, CssBaseline, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, useMediaQuery, useTheme} from '@mui/material';
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import MailIcon from '@mui/icons-material/Mail';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Dashboard from '@mui/icons-material/Dashboard';
+import CreateProductForm from './CreateProductForm';
+import ProductsTable from './ProductsTable';
+import OrdersTable from './OrdersTable';
+import CustomersTable from './CustomersTable';
+import AdminDashboard from './Dashboard';
 
 const menu=[
     {name: "Dashboard", path:"/admin",icon:<DashboardIcon/>},
@@ -28,27 +34,34 @@ const Admin = () => {
             overflow:"auto",
             display:"flex",
             flexDirection:"column",
-            justifyContent:"space-between"
+            justifyContent:"space-between",
+            // border:"1px solid blue",
+            height:"100%"
         }}
         >
-
-            {isLargeScreen && <Toolbar/>}
+<> 
+ {/* {isLargeScreen && <Toolbar/>} */}
             <List>
                 {menu.map((item,index)=> <ListItem key={item.name} disablePadding onClick={()=>navigate(item.path)}>
                     <ListItemButton>
                         <ListItemIcon>
                             {item.icon}
                         </ListItemIcon>
+                        <ListItemText>{item.name}</ListItemText>
                     </ListItemButton>
                 </ListItem>)}
             </List>
+</>
+          
 
             <List>
                 <ListItem  disablePadding>
                     <ListItemButton>
                         <ListItemIcon>
                             <AccountCircleIcon/>
+
                         </ListItemIcon>
+                       <ListItemText>Account</ListItemText>
                     </ListItemButton>
                 </ListItem>
             </List>
@@ -59,17 +72,28 @@ const Admin = () => {
   return (
     <div>
 
-        <Box
-        sx={{display:`${isLargeScreen} ? "flex":"block"`}}>
+        <div className='flex h-[100vh]'>
             <CssBaseline/>
 
-            <Drawer
-            variant='permanent'
-            >
+            <div className='w-[15%] border border-r-gray-300 h-full'>
                 {drawer}
-            </Drawer>
+            </div>
 
-        </Box>
+                <div className='w-[85%]'>
+                    
+                    <Routes>
+
+                        <Route path='/' element={<AdminDashboard/>}></Route>
+                        <Route path='/product/create' element={<CreateProductForm/>}></Route>
+                        <Route path='/products' element={<ProductsTable/>}></Route>
+                        <Route path='/orders' element={<OrdersTable/>}></Route>
+                        <Route path='/customers' element={<CustomersTable/>}></Route>
+
+                    </Routes>
+
+                </div>
+
+        </div>
 
     </div>
   )

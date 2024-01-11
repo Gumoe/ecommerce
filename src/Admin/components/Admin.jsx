@@ -1,5 +1,5 @@
 
-import { Box, List, ListItem, ListItemButton, ListItemIcon, Toolbar, useMediaQuery, useTheme} from '@mui/material';
+import { Box, CssBaseline, Drawer, List, ListItem, ListItemButton, ListItemIcon, Toolbar, useMediaQuery, useTheme} from '@mui/material';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import MailIcon from '@mui/icons-material/Mail';
@@ -55,10 +55,22 @@ const Admin = () => {
 
         </Box>
     )
-    
+
   return (
     <div>
-admin
+
+        <Box
+        sx={{display:`${isLargeScreen} ? "flex":"block"`}}>
+            <CssBaseline/>
+
+            <Drawer
+            variant='permanent'
+            >
+                {drawer}
+            </Drawer>
+
+        </Box>
+
     </div>
   )
 }

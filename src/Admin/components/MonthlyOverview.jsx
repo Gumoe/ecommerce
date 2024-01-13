@@ -10,25 +10,25 @@ const salesData=[
     {
         stats:'245K',
         tittle:"Sales",
-        color:"primary",
+        color:"#FFF222",
         icon:<TrendingUp sx={{frontSize:"1.75rem"}}/>
     },
     {
         stats:'12.5K',
         tittle:"Customers",
-        color:"success",
+        color:"#45CE30",
         icon:<AccountCircle sx={{frontSize:"1.75rem"}}/>
     },
     {
         stats:'1.54K',
         tittle:"Products",
-        color:"pwarning",
+        color:"#EC4849",
         icon:<SettingsCellIcon sx={{frontSize:"1.75rem"}}/>
     },
     {
         stats:'88K',
         tittle:"Revenue",
-        color:"info",
+        color:"#4BCFFA",
         icon:<AttachMoneyIcon sx={{frontSize:"1.75rem"}}/>
     }
 ]
@@ -45,12 +45,12 @@ const renderStats=() =>{
                     width:44,
                     height:44,
                     boxShadow:3,
-                    color:"white",
-                    backgound:`${item.color}`
+                    color:"common.white",
+                    backgoundColor:`${item.color}`
                 }}>
           {item.icon}          
                 </Avatar>    
-                <Box sx={{displ:'flex',flexDirection:'column'}}>
+                <Box sx={{display:'flex',flexDirection:'column'}}>
 
                     <Typography variant='caption'>{item.tittle}</Typography>
                     <Typography varian='h6'>{item.stats}</Typography>
@@ -72,7 +72,7 @@ const MonthlyOverview = () => {
     }
     subheader={
         <Typography variant='body2'>
-<Box component="span" sx={{fontWeight:600, mx:2}}>
+<Box component="span" sx={{fontWeight:600}}>
 
         Total 48.5% groth
 

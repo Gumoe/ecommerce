@@ -45,7 +45,7 @@ export const createProduct=(product)=>async(dispatch)=>{
   try {
     dispatch({type:CREATE_PRODUCTS_REQUEST})
 
-    const {data}=await api.post(`${API_BASE_URL}/api/admin/products`,product);
+    const {data}=await api.post(`/api/admin/products/`,product);
     console.log("created products", data)
     dispatch({
       type:CREATE_PRODUCTS_SUCCESS,

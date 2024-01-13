@@ -111,7 +111,7 @@ const CreateProductForm = () => {
             type="number"
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <TextField
             fullWidth
             label="Price"
@@ -136,7 +136,7 @@ const CreateProductForm = () => {
             fullWidth
             label="Discount Percentage"
             name="discountPercent"
-            value={productData.discountedPersent}
+            value={productData.discountPersent}
             onChange={handleChange}
             type="number"
             />
@@ -217,10 +217,10 @@ const CreateProductForm = () => {
                   label="Quantity"
                   name="size_quantity"
                   type="number"
-                  value={size.name}
                   onChange={(event) => handleSizeChange(event,index)}
                   required
                   fullWidth
+                 
                   />
                   </Grid></Grid>
             ))}

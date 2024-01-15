@@ -1,20 +1,38 @@
-import { Avatar, Button, Card, CardHeader, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { deleteProduct, findProducts } from '../../State/Product/Action'
+import {
+  Avatar,
+  Button,
+  Card,
+  CardHeader,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProduct, findProducts } from "../../State/Product/Action";
 
 const ProductsTable = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector(store => store)
+  const { products } = useSelector((store) => store);
+  const [selectedCategory, setSelectedCategory] = useState("Filter");
+  console.log("products ----", products);
 
-  console.log("products ----", products)
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
 
   const handleProductDelete = (productId) => {
-    dispatch(deleteProduct(productId))
-  }
+    dispatch(deleteProduct(productId));
+  };
   useEffect(() => {
     const data = {
-      category: "",
+      category: selectedCategory,
       colors: [],
       sizes: [],
       minPrice: 0,
@@ -23,16 +41,22 @@ const ProductsTable = () => {
       sort: "price-low",
       pageNumber: 0,
       pageSize: 10,
-      stock: ""
-    }
-    dispatch(findProducts(data))
-  }, [products.deletedProduct])
+      stock: "",
+    };
+    dispatch(findProducts(data));
+  }, [selectedCategory, products.deletedProduct]);
 
   return (
-    <div className='p-5'>
-
-      <Card className='mt-2'>
+    <div className="p-5">
+      <Card className="mt-2">
         <CardHeader title="All Products" />
+        <Select
+          value={selectedCategory}
+          onChange={handleCategoryChange}
+          label="Category"
+        >
+          <MenuItem value="Women Tops">Women Tops</MenuItem>
+        </Select>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -49,7 +73,7 @@ const ProductsTable = () => {
               {products?.products?.content?.map((item) => (
                 <TableRow
                   key={item.name}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell align="left">
                     <Avatar src={`/images/product/${item.imageUrl}`}></Avatar>
@@ -62,7 +86,12 @@ const ProductsTable = () => {
                   <TableCell align="left">{item.price}</TableCell>
                   <TableCell align="left">{item.quantity}</TableCell>
                   <TableCell align="left">
-                    <Button onClick={() => handleProductDelete(item.id)} variant='outlined'>Delete</Button>
+                    <Button
+                      onClick={() => handleProductDelete(item.id)}
+                      variant="outlined"
+                    >
+                      Delete
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -70,10 +99,8 @@ const ProductsTable = () => {
           </Table>
         </TableContainer>
       </Card>
-
-
     </div>
-  )
-}
+  );
+};
 
-export default ProductsTable
+export default ProductsTable;

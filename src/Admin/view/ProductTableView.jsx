@@ -10,7 +10,7 @@ const ProductsTableView = () => {
  
   useEffect(() => {
     const data = {
-      category: "Men",
+      category: "Men Tops",
       colors: [],
       sizes: [],
       minPrice: 0,
@@ -42,7 +42,7 @@ const ProductsTableView = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {products?.products?.content?.slice(0,5).map((item) => (
+              {products?.products?.content?.slice(0,10).map((item) => (
                 <TableRow
                   key={item.name}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

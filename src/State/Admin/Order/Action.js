@@ -37,7 +37,7 @@ export const getOrder = () => {
 export const confirmedOrder = (orderId) => async (dispatch) => {
   dispatch({ type: CONFIRMED_ORDERS_REQUEST });
   try {
-    const response = await api.put(`/api/admin/orders/${orderId}/confirmed/}`);
+    const response = await api.put(`/api/admin/orders/${orderId}/confirmed/`);
     const data = response.data;
     console.log("confirm_orders", data);
     dispatch({ type: CONFIRMED_ORDERS_SUCCESS, payload: data });
@@ -50,7 +50,7 @@ export const shipOrder = (orderId) => {
   return async (dispatch) => {
     dispatch({ type: SHIP_ORDERS_REQUEST });
     try {
-      const response = await api.put(`/api/admin/orders/${orderId}/ship}`);
+      const response = await api.put(`/api/admin/orders/${orderId}/ship`);
       const data = response.data;
       console.log("ship  orders", data);
       dispatch({ type: SHIP_ORDERS_SUCCESS, payload: data });
@@ -63,7 +63,7 @@ export const shipOrder = (orderId) => {
 export const deliveredOrder = (orderId) => async (dispatch) => {
   dispatch({ type: DELIVERED_ORDERS_REQUEST });
   try {
-    const response = await api.put(`/api/admin/orders/${orderId}/deliver}`);
+    const response = await api.put(`/api/admin/orders/${orderId}/deliver`);
     const data = response.data;
     console.log("dilivered  orders", data);
     dispatch({ type: DELIVERED_ORDERS_SUCCESS, payload: data });
@@ -75,7 +75,7 @@ export const deliveredOrder = (orderId) => async (dispatch) => {
 export const canceldOrder = (orderId) => async (dispatch) => {
   dispatch({ type: CANCELED_ORDERS_REQUEST });
   try {
-    const response = await api.put(`/api/admin/orders/${orderId}/cancel}`);
+    const response = await api.put(`/api/admin/orders/${orderId}/cancel`);
     const data = response.data;
 
     dispatch({ type: CANCELED_ORDERS_SUCCESS, payload: data });
@@ -89,7 +89,7 @@ export const deleteOrder = (orderId) => {
   return async (dispatch) => {
     dispatch({ type: DELETE_ORDERS_REQUEST });
     try {
-      const { data } = await api.delete(`/api/admin/orders/${orderId}/delete}`);
+      const { data } = await api.delete(`/api/admin/orders/${orderId}/delete`);
 
       console.log("delete  orders", data);
       dispatch({ type: DELETE_ORDERS_SUCCESS, payload: data });

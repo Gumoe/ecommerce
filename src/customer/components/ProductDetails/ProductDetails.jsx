@@ -378,7 +378,7 @@ export default function ProductDetails() {
         <section className="pt-10">
           <h1 className="py-5 text-xl font-bold">Sản phẩm tương tự</h1>
           <div className="flex flex-wrap space-y-5 justify-center">
-            {products.products && products.products?.content?.map((item) => (
+            {products.products?.content?.map((item) => (
               <HomeSectionCard key={item.id} product={item} />
             ))}
           </div>

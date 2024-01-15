@@ -7,12 +7,12 @@ const OrdersTable = () => {
   const open = Boolean(anchorEl);
 
   const handleClick = (event,index) => {
-    const newAnchorElArray[...anchorEl];
+    const newAnchorElArray = [...anchorEl];
     newAnchorElArray[index] = event.currentTarget
     setAnchorEl(newAnchorElArray);
   };
-  const handleClose = () => {
-    const newAnchorElArray[...anchorEl];
+  const handleClose = (index) => {
+    const newAnchorElArray = [...anchorEl];
     newAnchorElArray[index]=null
     setAnchorEl(newAnchorElArray);
   };
@@ -95,7 +95,7 @@ const OrdersTable = () => {
                       aria-haspopup="true"
                       onClick={(event)=>handleClick(event,index)}
                       aria-controls={`basic-menu-${item.id}`}
-                      aria-expanded={Boolean(anchorEl[Index])}
+                      aria-expanded={Boolean(anchorEl[index])}
                     >
                       Status
                     </Button>

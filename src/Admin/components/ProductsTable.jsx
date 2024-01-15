@@ -14,11 +14,11 @@ const ProductsTable = () => {
   }
   useEffect(() => {
     const data = {
-      category: "Men",
+      category: "",
       colors: [],
       sizes: [],
       minPrice: 0,
-      maxPrice: 1000000,
+      maxPrice: 100000000,
       minDiscount: 0,
       sort: "price-low",
       pageNumber: 0,
@@ -52,7 +52,7 @@ const ProductsTable = () => {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell align="left">
-                    <Avatar src={item.imageUrl}></Avatar>
+                    <Avatar src={`/images/product/${item.imageUrl}`}></Avatar>
                   </TableCell>
                   <TableCell align="left" scope="row">
                     {item.title}

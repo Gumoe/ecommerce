@@ -7,12 +7,12 @@ const OrdersTableView = () => {
   const open = Boolean(anchorEl);
 
   const handleClick = (event,index) => {
-    const newAnchorElArray[...anchorEl];
+    const newAnchorElArray = [...anchorEl];
     newAnchorElArray[index] = event.currentTarget
     setAnchorEl(newAnchorElArray);
   };
-  const handleClose = () => {
-    const newAnchorElArray[...anchorEl];
+  const handleClose = (index) => {
+    const newAnchorElArray = [...anchorEl];
     newAnchorElArray[index]=null
     setAnchorEl(newAnchorElArray);
   };

@@ -29,7 +29,7 @@ const initialState = {
     error: "",
 };
 
-const adminOrderReducer = (state = initialState) => {
+const adminOrderReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ORDERS_REQUEST:
             return {

@@ -8,7 +8,7 @@ import MonthlyOverview from "./MonthlyOverview";
 const AdminDashboard = () => {
   return (
     <div className="p-10">
-      <Grid container spacing={3}>
+      {/* <Grid container spacing={3}>
         <Grid item xs={12} md={4}>
           <div className="shadow-lg shadow-gray-600">
             <Achivement />
@@ -32,7 +32,7 @@ const AdminDashboard = () => {
             <ProductsTableView />
           </div>
         </Grid>
-      </Grid>
+      </Grid> */}
     </div>
   );
 };

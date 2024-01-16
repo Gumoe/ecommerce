@@ -4,6 +4,7 @@ import { authReducer } from "./Auth/Reducer";
 import { customerProductReducer } from "./Product/Reducer";
 import { cartReducer } from "./Cart/Reducer";
 import { orderReducer } from "./Order/Reducer";
+import { categoryReducer } from "./Category/Reducer";
 import adminOrderReducer from "./Admin/Order/Reducer";
 
 
@@ -12,8 +13,8 @@ const rootReducers = combineReducers({
     products: customerProductReducer,
     cart: cartReducer,
     order: orderReducer,
-    adminOrder:adminOrderReducer
-
+    adminOrder:adminOrderReducer,
+    categories: categoryReducer,
     
 })
 

@@ -16,11 +16,13 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, findProducts } from "../../State/Product/Action";
+import { getCategories } from "../../State/Category/Action";
 
 const ProductsTable = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((store) => store);
+  const { products, categories } = useSelector((store) => store);
   const [selectedCategory, setSelectedCategory] = useState("Filter");
+  console.log("categories", categories);
   console.log("products ----", products);
 
   const handleCategoryChange = (event) => {
@@ -30,21 +32,29 @@ const ProductsTable = () => {
   const handleProductDelete = (productId) => {
     dispatch(deleteProduct(productId));
   };
+
   useEffect(() => {
-    const data = {
-      category: selectedCategory,
-      colors: [],
-      sizes: [],
-      minPrice: 0,
-      maxPrice: 100000000,
-      minDiscount: 0,
-      sort: "price-low",
-      pageNumber: 0,
-      pageSize: 10,
-      stock: "",
-    };
-    dispatch(findProducts(data));
-  }, [selectedCategory, products.deletedProduct]);
+    dispatch(getCategories());
+  }, []);
+
+  useEffect(() => {
+    if (selectedCategory !== "Filter") {
+      const data = {
+        category: selectedCategory,
+        colors: [],
+        sizes: [],
+        minPrice: 0,
+        maxPrice: 100000000,
+        minDiscount: 0,
+        sort: "price-low",
+        pageNumber: 0,
+        pageSize: 10,
+        stock: "",
+      };
+      dispatch(findProducts(data));
+    }
+  }, [selectedCategory, dispatch]);
+
 
   return (
     <div className="p-5">
@@ -55,7 +65,12 @@ const ProductsTable = () => {
           onChange={handleCategoryChange}
           label="Category"
         >
-          <MenuItem value="Women Tops">Women Tops</MenuItem>
+          <MenuItem value="Filter">Filter</MenuItem>
+          {categories?.categories?.map((item) => (
+              <MenuItem key={item.id} value={item.name}>
+                {item.name}
+              </MenuItem>
+            ))}
         </Select>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">

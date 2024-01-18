@@ -108,7 +108,7 @@ export default function Product() {
       sort:sortValue || "price_low",
       pageNumber:pageNumber -1,
       pageSize:10,
-      stock:stock
+      stock:stock,
 
     }
     dispatch(findProducts(data))

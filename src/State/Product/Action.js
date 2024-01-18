@@ -14,9 +14,10 @@ export const findProducts = (reqData) => async (dispatch) => {
     sort,
     pageNumber,
     pageSize,
+    createdAt,
   } = reqData;
   try {
-    const { data } = await api.get(`/api/products?color=${colors}&size=${sizes}&minPrice=${minPrice}&maxPrice=${maxPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}&`)
+    const { data } = await api.get(`/api/products?color=${colors}&size=${sizes}&minPrice=${minPrice}&maxPrice=${maxPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}&createdAt=${createdAt}`)
 
 
     console.log("product data", data)
@@ -59,7 +60,7 @@ export const deleteProduct=(productId)=>async(dispatch)=>{
   try {
     dispatch({type:DELETE_PRODUCT_REQUEST})
 
-    const {data}=await api.delete(`${API_BASE_URL}/api/admin/products${productId}/delete`);
+    const {data}=await api.delete(`${API_BASE_URL}/api/admin/products/${productId}/delete`);
 
     console.log("delete product",data)
     dispatch({

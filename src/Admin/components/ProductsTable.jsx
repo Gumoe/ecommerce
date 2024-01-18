@@ -22,9 +22,6 @@ const ProductsTable = () => {
   const dispatch = useDispatch();
   const { products, categories } = useSelector((store) => store);
   const [selectedCategory, setSelectedCategory] = useState("Filter");
-  console.log("categories", categories);
-  console.log("products ----", products);
-
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
@@ -55,7 +52,6 @@ const ProductsTable = () => {
     }
   }, [selectedCategory, dispatch]);
 
-
   return (
     <div className="p-5">
       <Card className="mt-2">
@@ -67,10 +63,10 @@ const ProductsTable = () => {
         >
           <MenuItem value="Filter">Filter</MenuItem>
           {categories?.categories?.map((item) => (
-              <MenuItem key={item.id} value={item.name}>
-                {item.name}
-              </MenuItem>
-            ))}
+            <MenuItem key={item.id} value={item.name}>
+              {item.name}
+            </MenuItem>
+          ))}
         </Select>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
